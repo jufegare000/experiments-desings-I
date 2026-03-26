@@ -5,6 +5,10 @@ source("./data_definition.R")
 source("./1_box_plot.R")
 source("./2_ANOVA.R")
 source("./3_regression_validation.R")
+source("./4_scheffe_method.R")
+source("./5_tukey.R")
+source("./6_replica_analysis.R")
+
 
 # Dependencies installation
 install_dependencies()
@@ -29,8 +33,27 @@ show_summary(regression_model)
 # homocedasticidad, independencia, influencia)
 # ----------------------------------------------------
 
-validation_of_assumptions(regression_model,  resistors, techniques, resistors_df)
+influencia_plot <- validation_of_assumptions(regression_model,  resistors, techniques, resistors_df)
+print(influencia_plot)
 
+# ----------------------------------------------------
+# 4. Método de Scheffé para comparar CONTRASTES (todos los contrastes)
+scheffe_test_analysis(resistors, techniques, resistors_df)
+
+
+# ----------------------------------------------------
+# 5. Comparaciones pareadas: Tukey, LSD (Fisher), Duncan, Newman-Keuls (SNK)
+# ----------------------------------------------------
+# Tukey HSD
+tukey_analysis(resistors, techniques, resistors_df)
+
+
+# ----------------------------------------------------
+# Análisis del número de réplicas (potencia)
+# ----------------------------------------------------
+# Ejemplo: ¿Con n = 4 réplicas por técnica, qué potencia tenemos para detectar la diferencia observada entre técnica 1 y 2?
+
+replica_analysis(resistors_df)
 
 
 

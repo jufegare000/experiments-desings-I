@@ -14,4 +14,3 @@ show_summary <- function (modelo) {
   print("----- Resumen del modelo (regresión) -----")
   print(summary_modelo)
 }
-
